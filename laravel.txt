@@ -1,0 +1,80 @@
+1.注：app 目录中的很多类都可以通过 Artisan 命令生成，要查看所有有效的命令，
+     可以在终端中运行 php artisan list make 命令。
+2.有广播频道类 php artisan make:channel TestChannel
+3.创建资源控制器：包含各种方法：php artisan make:controller PostController --resource
+4. 清除缓存：composer dump-autoload
+5.快速生成不包含 create 或 edit 方法的 API 资源控制器  php artisan make:controller API/PostController --api
+6. 生成路由缓存 php artisan route:cache
+7.移除缓存路由文件  php artisan route:clear
+8.删除所有已缓存的 Blade 视图， view:clear Artisan 命令来清除。
+9.你可以使用 Artisan 命令 session:table 在数据库中创建这张表：
+					php artisan make:migration create_users_table --create=users
+	php artisan session:table 或者 php artisan make:migration create_ceshi_table
+	php artisan migrate
+10.创建表单验证类，可以使用 Artisan 命令 make:request：
+	php artisan make:request StoreBlogPost
+
+11.生成一个填充器: php artisan make:seeder UsersTableSeeder
+   重新生成 Composer 的自动加载器：composer dump-autoload
+ 命令 db:seed 来填充数据库
+	php artisan db:seed
+	php artisan db:seed --class=UsersTableSeeder
+12.在 Laravel 中使用 Redis 之前，需要通过 Composer 安装 predis/predis 包：
+ `	composer require predis/predis
+13.创建模型实例
+	php artisan make:model User
+14.清除缓存
+	php artisan cache:clear
+15:命令会创建路由器文件app/Admin/Controllers/UserController.php.
+// 在windows系统中
+php artisan admin:make UserController --model=App\User
+16:可以使用 Artisan 命令 storage:link 来创建符号链接：
+
+php artisan storage:link
+17.创建模型实例的最简单方法
+php artisan make:model User
+
+
+
+
+
+时间格式：https://carbon.nesbot.com/docs/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+视频链接
+  Laravel5.5新特性
+链接:https://pan.baidu.com/s/1miOewQ0 
+密码:02wp
+
+
+
+ Laravel5文档教程
+链接:https://d.laravel-china.org/docs/5.5
+
+ Laravel5速查表
+链接:https://cs.laravel-china.org
+
+  100 个 Laravel 扩展包推荐
+链接:https://segmentfault.com/a/1190000006221897?utm_source=tuicool&utm_medium=referral
+
+ 博客网址
+链接:http://coding.iwanli.me/course/1.html

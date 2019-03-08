@@ -1,0 +1,267 @@
+1、array_slice() 函数返回数组中的选定部分。
+
+注释：如果数组有字符串键名，所返回的数组将保留键名（参见实例 4）。
+语法
+array_slice(array,start,length,preserve)
+
+参数 	描述
+array 	必需。规定数组。
+start 	必需。数值。规定取出元素的开始位置。 0 = 第一个元素。 如果该值设置为正数，则从前往后开始取。如果该值设置为负数，则从后向前取 start 绝对值。 -2 意味着从数组的倒数第二个元素开始。
+length 	可选。数值。规定被返回数组的长度。 如果该值设置为整数，则返回该数量的元素。如果该值设置为负数，则函数将在举例数组末端这么远的地方终止取出。如果该值未设置，则返回从 start 参数设置的位置开始直到数组末端的所有元素。
+preserve 	可选。规定函数是保留键名还是重置键名。可能的值：
+
+    true - 保留键名
+    false - 默认。重置键名
+
+
+从数组的第二个元素开始取出，并返回直到数组末端的所有元素：
+<?php
+$a=array("red","green","blue","yellow","brown");
+print_r(array_slice($a,2));
+?>
+//Array ( [0] => blue [1] => yellow [2] => brown ) 
+
+2、PHP static 关键词
+
+通常，当函数完成/执行后，会删除所有变量。不过，有时我需要不删除某个局部变量。实现这一点需要更进一步的工作。
+
+要完成这一点，请在您首次声明变量时使用 static 关键词：然后，每当函数被调用时，这个变量所存储的信息都是函数最后一次被调用时所包含的信息。
+
+注释：该变量仍然是函数的局部变量。
+<?php
+
+function myTest() {
+  static $x=0;
+  echo $x;
+  $x++;
+}
+
+myTest();//0
+myTest();//1
+myTest();//2
+
+?>
+3、thinkphp中I方法；
+   param变量类型是框架特有的支持自动判断当前请求类型的变量获取方式，例如：
+
+echo I('param.id');
+
+如果当前请求类型是GET，那么等效于 $_GET['id']，如果当前请求类型是POST或者PUT，那么相当于获取 $_POST['id'] 或者 PUT参数id。
+
+由于param类型是I函数默认获取的变量类型，因此事实上param变量类型的写法可以简化为：
+
+    I('id'); // 等同于 I('param.id')
+    I('name'); // 等同于 I('param.name')
+4.htmlspecialchars_decode — 将特殊的 HTML 实体转换回普通字符
+说明
+string htmlspecialchars_decode ( string $string [, int $flags = ENT_COMPAT | ENT_HTML401 ] )
+
+此函数的作用和 htmlspecialchars() 刚好相反。它将特殊的HTML实体转换回普通字符。
+
+被转换的实体有： &amp;， &quot; （没有设置ENT_NOQUOTES 时）, &#039; （设置了 ENT_QUOTES 时）， &lt; 以及&gt;。
+定义和用法
+
+5\PHP htmlspecialchars_decode() 函数
+
+PHP String 参考手册 PHP String 参考手册
+实例
+
+把预定义的 HTML 实体 "&lt;"（小于）和 "&gt;"（大于）转换为字符：
+<?php
+$str = "This is some &lt;b&gt;bold&lt;/b&gt; text.";
+echo htmlspecialchars_decode($str);
+?>
+
+上面代码的 HTML 输出如下（查看源代码）：
+<!DOCTYPE html>
+<html>
+<body>
+This is some <b>bold</b> text.
+</body>
+</html>
+
+上面代码的浏览器输出如下：
+This is some bold text.
+
+定义和用法
+
+htmlspecialchars_decode() 函数把一些预定义的 HTML 实体转换为字符。
+
+会被解码的 HTML 实体是：
+
+    &amp; 解码成 & （和号）
+    &quot; 解码成 " （双引号）
+    ' 解码成 ' （单引号）
+    &lt; 解码成 < （小于）
+    &gt; 解码成 > （大于）
+
+htmlspecialchars_decode() 函数是 htmlspecialchars() 函数的反函数。
+语法
+htmlspecialchars_decode(string,flags)
+
+参数 	描述
+string 	必需。规定要解码的字符串。
+flags 	可选。规定如何处理引号以及使用哪种文档类型。
+
+可用的引号类型：
+
+    ENT_COMPAT - 默认。仅解码双引号。
+    ENT_QUOTES - 解码双引号和单引号。
+    ENT_NOQUOTES - 不解码任何引号。
+
+规定使用的文档类型的附加 flags：
+
+    ENT_HTML401 - 默认。作为 HTML 4.01 处理代码。
+    ENT_HTML5 - 作为 HTML 5 处理代码。
+    ENT_XML1 - 作为 XML 1 处理代码。
+    ENT_XHTML - 作为 XHTML 处理代码。
+
+技术细节
+返回值： 	返回已转换的字符串。
+PHP 版本： 	5.1.0+
+更新日志： 	在 PHP 5.4 中，新增了用于规定使用的文档类型的附加 flags：ENT_HTML401、ENT_HTML5、ENT_XML1 和 ENT_XHTML。
+
+更多实例
+实例 1
+
+把一些预定义的 HTML 实体转换为字符：
+<?php
+$str = "Jane &amp; 'Tarzan'";
+echo htmlspecialchars_decode($str, ENT_COMPAT); //  默认，仅解码双引号
+echo "<br>";
+echo htmlspecialchars_decode($str, ENT_QUOTES); //  解码双引号和单引号
+echo "<br>";
+echo htmlspecialchars_decode($str, ENT_NOQUOTES); // 不解码任何引号
+?>
+
+上面代码的 HTML 输出如下（查看源代码）：
+<!DOCTYPE html>
+<html>
+<body>
+Jane & 'Tarzan'<br>
+Jane & 'Tarzan'<br>
+Jane & 'Tarzan'
+</body>
+</html>
+
+上面代码的浏览器输出如下：
+Jane & 'Tarzan'
+Jane & 'Tarzan'
+Jane & 'Tarzan'
+
+
+实例 2
+
+把预定义 HTML 实体转换为双引号：
+<?php
+$str = 'I love &quot;PHP&quot;.';
+echo htmlspecialchars_decode($str, ENT_QUOTES); // 解码双引号和单引号
+?>
+
+上面代码的 HTML 输出如下（查看源代码）：
+<!DOCTYPE html>
+<html>
+<body>
+I love "PHP".
+</body>
+</html>
+
+上面代码的浏览器输出如下：
+I love "PHP".
+
+6.array_combine
+定义和用法
+
+array_combine() 函数通过合并两个数组来创建一个新数组，其中的一个数组是键名，另一个数组的值为键值。
+
+注释：键名数组和键值数组的元素个数必须相同！
+
+如果其中一个数组为空，或者两个数组的元素个数不同，则该函数返回 false。
+语法
+
+array_combine(keys,values);
+
+参数 	描述
+keys 	必需。键名数组。
+values 	必需。键值数组。
+7.array_merge()
+定义和用法
+
+array_merge() 函数把一个或多个数组合并为一个数组。
+
+提示：您可以向函数输入一个或者多个数组。
+
+注释：如果两个或更多个数组元素有相同的键名，则最后的元素会覆盖其他元素。
+
+注释：如果您仅向 array_merge() 函数输入一个数组，且键名是整数，则该函数将返回带有整数键名的新数组，其键名以 0 开始进行重新索引（参见下面的实例 1）。
+
+提示：该函数与 array_merge_recursive() 函数之间的不同是在处理两个或更多个数组元素有相同的键名的情况。array_merge_recursive() 不会进行键名覆盖，而是将多个相同键名的值递归组成一个数组。
+<?php
+$a=array(3=>"red",4=>"green");
+print_r(array_merge($a));
+?>//Array ( [0] => red [1] => green ) 
+8.json_decode
+
+PHP json_decode() 函数用于对 JSON 格式的字符串进行解码，并转换为 PHP 变量。
+语法
+
+mixed json_decode ($json [,$assoc = false [, $depth = 512 [, $options = 0 ]]])
+
+参数
+
+    json_string: 待解码的 JSON 字符串，必须是 UTF-8 编码数据
+
+    assoc: 当该参数为 TRUE 时，将返回数组，FALSE 时返回对象。
+
+    depth: 整数类型的参数，它指定递归深度
+
+    options: 二进制掩码，目前只支持 JSON_BIGINT_AS_STRING 。
+9. 1.常量在定义的时候需要赋初值
+ 2.常量不能修改.
+ 3.常量名不能有 $, 一般是大写, 默认是public
+ 4.常量在类的内部使用 self::常量的名称  或   类名::常量的名称  表示
+    在类的外部使用   类名::常量的名称   表示.
+ 5.常量可以被子类继承
+ 6.常量是属于 类 的，不是属于某个对象
+10.array_multisort() 函数对多个数组或多维数组进行排序。
+
+参数中的数组被当成一个表的列并以行来进行排序 - 这类似 SQL 的 ORDER BY 子句的功能。第一个数组是要排序的主要数组。数组中的行（值）比较为相同的话，就会按照下一个输入数组中相应值的大小进行排序，依此类推。
+
+第一个参数是数组，随后的每一个参数可能是数组，也可能是下面的排序顺序标志（排序标志用于更改默认的排列顺序）之一：
+
+    SORT_ASC - 默认，按升序排列。(A-Z)
+    SORT_DESC - 按降序排列。(Z-A)
+
+随后可以指定排序的类型：
+
+    SORT_REGULAR - 默认。将每一项按常规顺序排列。
+    SORT_NUMERIC - 将每一项按数字顺序排列。
+    SORT_STRING - 将每一项按字母顺序排列。
+11.
+
+array_search() 函数在数组中搜索某个键值，并返回对应的键名。
+详细说明
+
+array_search() 函数与 in_array() 一样，在数组中查找一个键值。如果找到了该值，匹配元素的键名会被返回。如果没找到，则返回 false。
+
+在 PHP 4.2.0 之前，函数在失败时返回 null 而不是 false。
+
+如果第三个参数 strict 被指定为 true，则只有在数据类型和值都一致时才返回相应元素的键名。
+
+12.array_column() 返回输入数组中某个单一列的值。
+13.array_search() 函数在数组中搜索某个键值，并返回对应的键名。
+详细说明
+
+array_search() 函数与 in_array() 一样，在数组中查找一个键值。如果找到了该值，匹配元素的键名会被返回。如果没找到，则返回 false。
+
+在 PHP 4.2.0 之前，函数在失败时返回 null 而不是 false。
+
+如果第三个参数 strict 被指定为 true，则只有在数据类型和值都一致时才返回相应元素的键名。
+13;
+JSON是一种基于文本的数据交换方式（不支持跨域），而JSONP是一种非官方跨域数据交互协议。
+json 是一种数据格式
+jsonp 是一种数据调用的方式。
+你可以简单的理解为 带callback的json就是jsonp.
+14;
+str_shuffle() 函数随机打乱字符串中的所有字符。如：echo str_shuffle("I love Shanghai");
+str_repeat() 函数把字符串重复指定的次数。如：echo str_repeat("Shanghai",5);

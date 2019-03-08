@@ -1,0 +1,92 @@
+1、调出Terminal快捷键：Alt+F12
+
+2、左边的文件列表没用了 怎么弄出来
+ALT+1
+ALT+数字键，是各种工具栏的显示与隐藏快捷键，你可以挨个试一下。
+3、CTRL+ALT+L    格式化代码
+4、ctrl+shift+enter  (智能完善代码 如 if()) 
+5、SHIFT+F6   重构-重命名
+6.Shift + F2   可以快速跳到错误行，应该是你想要的。
+7.alt+f12   弹出terminal
+8.ALT+↑/↓   跳转下(上)一个函数
+9.  Ctrl+Shift+C 复制当前打开文件的文件地址
+10.Ctrl+Shift+向下（上）箭头  单行代码、方法交换位置
+11.ctrl+shift+u字母大小写转换
+12.ctrl+shift+n   查找文件
+13.phpstorm IDEA 双击Shift键会弹出 SearchEverywhere 对话框  查找文件
+    
+
+
+  
+
+SVN:符号
+问号：未纳入SVN控制之下的新文件
+感叹号：已经修改过还没上传的文件
+红叉：准备删除尚未提交
+绿勾：从服务器上取下来没修改过的文件
+黄色感叹号：发生冲突
+蓝色加号：准备加到服务器上还没提交
+
+git:每次在本地开发测试之后，都需要更改配置文件
+git update-index --assume-unchanged   /path/file 可以忽略这个修改。从而不用提交到库里面。
+git update-index --no-assume-unchanged /path/file  来恢复跟踪
+
+Git鼓励大量使用分支：
+查看分支：git branch
+创建分支：git branch <name>
+切换分支：git checkout <name>
+创建+切换分支：git checkout -b <name>
+合并某分支到当前分支：git merge <name>
+删除分支：git branch -d <name>
+1、创建本地分支 local_branch
+
+     git branch local_branch
+
+
+2、创建本地分支local_branch 并切换到local_branch分支
+
+   git checkout -b local_branch
+
+
+3、切换到分支local_branch
+
+    git checkout local_branch
+
+
+4、推送本地分支local_branch到远程分支 remote_branch并建立关联关系
+
+      a.远程已有remote_branch分支并且已经关联本地分支local_branch且本地已经切换到local_branch
+
+          git push
+
+     b.远程已有remote_branch分支但未关联本地分支local_branch且本地已经切换到local_branch
+
+         git push -u origin/remote_branch
+
+     c.远程没有有remote_branch分支并，本地已经切换到local_branch
+
+        git push origin local_branch:remote_branch
+
+5、删除本地分支local_branch
+
+      git branch -d local_branch
+
+6、删除远程分支remote_branch
+
+     git push origin  :remote_branch
+
+     git branch -m | -M oldbranch newbranch 重命名分支，如果newbranch名字分支已经存在，则需要使用-M强制重命名，否则，使用-m进行重命名。
+
+   git branch -d | -D branchname 删除branchname分支
+
+   git branch -d -r branchname 删除远程branchname分支
+
+
+7、查看本地分支
+
+      git branch
+
+
+8、查看远程和本地分支
+
+      git branch -a
